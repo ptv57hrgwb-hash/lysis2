@@ -6,7 +6,13 @@
   <title>Lysis — Studio & Transmission sonore</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-
+<script>
+  const onScroll = () => {
+    document.body.classList.toggle('scrolled', window.scrollY > 40);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
 <body>
 <div class="topbar" id="topbar">
   <div class="topbar__inner">
