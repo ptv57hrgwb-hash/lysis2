@@ -297,3 +297,99 @@ body{
   .divider{ height: 180px; }
   .divider--thin{ height: 130px; }
 }
+/* =========================
+   Premium polish
+   ========================= */
+
+html{
+  scroll-behavior: smooth;
+}
+
+/* Topbar */
+.topbar{
+  position: fixed;
+  top: 14px;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  pointer-events: none; /* on réactive sur inner */
+}
+
+.topbar__inner{
+  width: min(1080px, 92vw);
+  margin: 0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 16px;
+
+  padding: 10px 14px;
+  border-radius: 999px;
+
+  background: rgba(10,10,14,.35);
+  border: 1px solid rgba(255,255,255,.10);
+  backdrop-filter: blur(10px);
+
+  transform: translateY(-12px);
+  opacity: 0;
+  transition: opacity .35s ease, transform .35s ease;
+  pointer-events: auto;
+}
+
+/* visible au scroll */
+body.scrolled .topbar__inner{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.topbar__brand{
+  color: rgba(255,255,255,.86);
+  text-decoration: none;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.topbar__nav{
+  display:flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content:flex-end;
+}
+
+.topbar__link{
+  color: rgba(255,255,255,.72);
+  text-decoration:none;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(255,255,255,.0);
+  padding-bottom: 2px;
+  transition: color .2s ease, border-color .2s ease;
+}
+.topbar__link:hover{
+  color: rgba(255,255,255,.92);
+  border-bottom-color: rgba(255,255,255,.22);
+}
+
+/* Cards / panes hover (élégant) */
+.pane, .card, .train{
+  transition: transform .25s ease, border-color .25s ease, background-color .25s ease;
+}
+.pane:hover, .card:hover{
+  transform: translateY(-3px);
+  background: rgba(255,255,255,.045);
+}
+
+/* Button hover */
+.btn{
+  transition: transform .2s ease, border-color .2s ease, color .2s ease;
+}
+.btn:hover{
+  transform: translateY(-1px);
+}
+
+/* Mobile: topbar plus simple */
+@media (max-width: 520px){
+  .topbar{ top: 10px; }
+  .topbar__nav{ gap: 10px; }
+  .topbar__link{ font-size: 12px; }
+}
