@@ -26,7 +26,8 @@
   <header class="hero" id="top">
     <div class="hero__bg" aria-hidden="true"></div>
 
-    <div class="hero__content reveal reveal--up is-visible">
+    <!-- On laisse le hero visible (pas de reveal ici, sinon ça “clignote”) -->
+    <div class="hero__content">
       <h1 class="hero__title">LYSIS</h1>
       <p class="hero__subtitle">Studio &amp; Transmission sonore</p>
 
@@ -174,14 +175,15 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
-    // Reveal "assemblage" au scroll
+    // Reveal "assemblage" au scroll (rejoue à chaque passage)
     const items = document.querySelectorAll('.reveal');
 
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if(entry.isIntersecting){
+        if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
+        } else {
+          entry.target.classList.remove('is-visible');
         }
       });
     }, {
@@ -190,10 +192,7 @@
       rootMargin: "0px 0px -10% 0px"
     });
 
-    items.forEach(el => {
-      // Le hero est déjà visible au chargement
-      if(!el.classList.contains('is-visible')) io.observe(el);
-    });
+    items.forEach(el => io.observe(el));
   </script>
 
 </body>
