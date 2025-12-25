@@ -26,7 +26,7 @@
   <header class="hero" id="top">
     <div class="hero__bg" aria-hidden="true"></div>
 
-    <div class="hero__content">
+    <div class="hero__content reveal reveal--up is-visible">
       <h1 class="hero__title">LYSIS</h1>
       <p class="hero__subtitle">Studio &amp; Transmission sonore</p>
 
@@ -48,18 +48,18 @@
   <main>
 
     <!-- Divider cuivre (transition hero -> contenu) -->
-    <div class="divider" aria-hidden="true"></div>
+    <div class="divider reveal" aria-hidden="true"></div>
 
     <!-- MANIFESTE -->
     <section class="section section--manifesto" id="manifesto">
       <div class="container">
-        <h2 class="manifesto">
+        <h2 class="manifesto reveal reveal--up">
           <span>Une signature sonore.</span>
           <span>Un mix précis.</span>
           <span>Une méthode.</span>
         </h2>
 
-        <p class="lead">
+        <p class="lead reveal reveal--up reveal--delay-1">
           Lysis accompagne les projets artistiques et audiovisuels jusqu’à leur réalisation,
           avec exigence, écoute et transmission.
         </p>
@@ -70,7 +70,7 @@
     <section class="section section--split" id="studio">
       <div class="container">
         <div class="split">
-          <article class="pane">
+          <article class="pane reveal reveal--left">
             <h3 class="pane__title">Ingénierie sonore</h3>
             <p class="pane__text">Création sonore sur mesure.</p>
             <div class="rule"></div>
@@ -81,7 +81,7 @@
             </ul>
           </article>
 
-          <article class="pane">
+          <article class="pane reveal reveal--right">
             <h3 class="pane__title">Transmission</h3>
             <p class="pane__text">Formations et partage de savoir.</p>
             <div class="rule"></div>
@@ -95,25 +95,25 @@
       </div>
     </section>
 
-    <div class="divider divider--thin" aria-hidden="true"></div>
+    <div class="divider divider--thin reveal" aria-hidden="true"></div>
 
     <!-- PRESTATIONS -->
     <section class="section section--cards" id="prestations">
       <div class="container">
-        <h2 class="section__title">Prestations</h2>
+        <h2 class="section__title reveal reveal--up">Prestations</h2>
 
         <div class="cards">
-          <article class="card">
+          <article class="card reveal reveal--up reveal--delay-1">
             <h3 class="card__title">Enregistrement</h3>
             <p class="card__text">Précision <span class="accent">&amp; écoute</span></p>
           </article>
 
-          <article class="card">
+          <article class="card reveal reveal--up reveal--delay-2">
             <h3 class="card__title">Mix</h3>
             <p class="card__text">Équilibre <span class="accent">&amp; intention</span></p>
           </article>
 
-          <article class="card">
+          <article class="card reveal reveal--up reveal--delay-3">
             <h3 class="card__title">Accompagnement</h3>
             <p class="card__text">Vision <span class="accent">globale</span></p>
           </article>
@@ -121,14 +121,14 @@
       </div>
     </section>
 
-    <div class="divider divider--thin" aria-hidden="true"></div>
+    <div class="divider divider--thin reveal" aria-hidden="true"></div>
 
     <!-- FORMATIONS -->
     <section class="section section--train" id="formations">
       <div class="container">
-        <h2 class="section__title">Formations</h2>
+        <h2 class="section__title reveal reveal--up">Formations</h2>
 
-        <div class="train">
+        <div class="train reveal reveal--up">
           <div class="train__row">
             <div class="train__name">Initiation MAO</div>
             <div class="train__meta">2 jours</div>
@@ -152,11 +152,13 @@
     <!-- CONTACT -->
     <section class="section section--contact" id="contact">
       <div class="container">
-        <h2 class="contact__title">Un projet ? Une formation ? Parlons-en.</h2>
+        <h2 class="contact__title reveal reveal--up">Un projet ? Une formation ? Parlons-en.</h2>
 
-        <a class="contact__mail" href="mailto:contact@lysis-audio.com">contact@lysis-audio.com</a>
+        <a class="contact__mail reveal reveal--up reveal--delay-1" href="mailto:contact@lysis-audio.com">
+          contact@lysis-audio.com
+        </a>
 
-        <div class="contact__foot">
+        <div class="contact__foot reveal reveal--up reveal--delay-2">
           <a class="navlink navlink--top" href="#top">Retour en haut</a>
         </div>
       </div>
@@ -165,11 +167,33 @@
   </main>
 
   <script>
+    // Topbar visible au scroll
     const onScroll = () => {
       document.body.classList.toggle('scrolled', window.scrollY > 40);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    // Reveal "assemblage" au scroll
+    const items = document.querySelectorAll('.reveal');
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.12,
+      rootMargin: "0px 0px -10% 0px"
+    });
+
+    items.forEach(el => {
+      // Le hero est déjà visible au chargement
+      if(!el.classList.contains('is-visible')) io.observe(el);
+    });
   </script>
 
 </body>
