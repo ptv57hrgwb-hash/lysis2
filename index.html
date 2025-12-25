@@ -166,36 +166,49 @@
   </main>
 
   <script>
-    // Force le chargement en haut (évite la restauration du scroll)
-    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-    window.addEventListener("load", () => window.scrollTo(0, 0));
+  // Empêche Safari de restaurer la position (quand possible)
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 
-    // Topbar visible au scroll
-    const onScroll = () => {
-      document.body.classList.toggle('scrolled', window.scrollY > 40);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+  function forceTop() {
+    // Ne force PAS si l’URL contient un #ancre (ex: #studio)
+    if (location.hash) return;
 
-    // Reveal "assemblage" au scroll (rejoue à chaque passage)
-    const items = document.querySelectorAll('.reveal');
+    // Force en plusieurs passes (Safari iOS est capricieux)
+    window.scrollTo(0, 0);
+    requestAnimationFrame(() => window.scrollTo(0, 0));
+    setTimeout(() => window.scrollTo(0, 0), 60);
+  }
 
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        } else {
-          entry.target.classList.remove('is-visible');
-        }
-      });
-    }, {
-      root: null,
-      threshold: 0.12,
-      rootMargin: "0px 0px -10% 0px"
+  // Chargement normal
+  window.addEventListener("load", forceTop);
+
+  // IMPORTANT: iOS Safari (bfcache / retour onglet)
+  window.addEventListener("pageshow", (e) => {
+    // e.persisted = page restaurée depuis cache
+    forceTop();
+  });
+
+  // Topbar visible au scroll
+  const onScroll = () => {
+    document.body.classList.toggle("scrolled", window.scrollY > 40);
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // Reveal "assemblage" au scroll (rejoue à chaque passage)
+  const items = document.querySelectorAll(".reveal");
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      entry.target.classList.toggle("is-visible", entry.isIntersecting);
     });
+  }, {
+    threshold: 0.12,
+    rootMargin: "0px 0px -10% 0px"
+  });
 
-    items.forEach(el => io.observe(el));
-  </script>
+  items.forEach((el) => io.observe(el));
+</script>
 
 </body>
 </html>
