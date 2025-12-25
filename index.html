@@ -1,29 +1,3 @@
-<script>
-  // Force le chargement en haut (évite la restauration du scroll)
-  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-  window.addEventListener("load", () => window.scrollTo(0, 0));
-
-  // Topbar visible au scroll
-  const onScroll = () => {
-    document.body.classList.toggle('scrolled', window.scrollY > 40);
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  // Reveal "assemblage" au scroll (rejoue à chaque passage)
-  const items = document.querySelectorAll('.reveal');
-
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('is-visible');
-      else entry.target.classList.remove('is-visible');
-    });
-  }, { threshold: 0.12, rootMargin: "0px 0px -10% 0px" });
-
-  items.forEach(el => io.observe(el));
-</script>
-
-
 <!doctype html>
 <html lang="fr">
 <head>
@@ -52,7 +26,6 @@
   <header class="hero" id="top">
     <div class="hero__bg" aria-hidden="true"></div>
 
-    <!-- On laisse le hero visible (pas de reveal ici, sinon ça “clignote”) -->
     <div class="hero__content">
       <h1 class="hero__title">LYSIS</h1>
       <p class="hero__subtitle">Studio &amp; Transmission sonore</p>
@@ -74,7 +47,6 @@
 
   <main>
 
-    <!-- Divider cuivre (transition hero -> contenu) -->
     <div class="divider reveal" aria-hidden="true"></div>
 
     <!-- MANIFESTE -->
@@ -181,8 +153,8 @@
       <div class="container">
         <h2 class="contact__title reveal reveal--up">Un projet ? Une formation ? Parlons-en.</h2>
 
-        <a class="contact__mail reveal reveal--up reveal--delay-1" href="mailto:lysis.asso@gmail.com">
-          Clique la dessus père lulu
+        <a class="contact__mail reveal reveal--up reveal--delay-1" href="mailto:contact@lysis-audio.com">
+          Écris-nous
         </a>
 
         <div class="contact__foot reveal reveal--up reveal--delay-2">
@@ -194,6 +166,10 @@
   </main>
 
   <script>
+    // Force le chargement en haut (évite la restauration du scroll)
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    window.addEventListener("load", () => window.scrollTo(0, 0));
+
     // Topbar visible au scroll
     const onScroll = () => {
       document.body.classList.toggle('scrolled', window.scrollY > 40);
