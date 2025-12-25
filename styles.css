@@ -271,3 +271,29 @@ body{
   .hero__title{ letter-spacing: .22em; }
   .section{ padding: 56px 0; }
 }
+/* =========================
+   Dividers (motif cuivre)
+   ========================= */
+
+.divider{
+  height: 240px;
+  background-image: url("assets/motif-divider-copper.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: .9;
+
+  /* fondu doux haut/bas pour fondre dans les sections */
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 80%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 80%, transparent);
+}
+
+.divider--thin{
+  height: 160px;
+  opacity: .75;
+}
+
+@media (max-width: 520px){
+  .divider{ height: 180px; }
+  .divider--thin{ height: 130px; }
+}
