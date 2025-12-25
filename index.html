@@ -6,26 +6,22 @@
   <title>Lysis — Studio & Transmission sonore</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<script>
-  const onScroll = () => {
-    document.body.classList.toggle('scrolled', window.scrollY > 40);
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-</script>
-  
+
 <body>
-<div class="topbar" id="topbar">
-  <div class="topbar__inner">
-    <a class="topbar__brand" href="#top">LYSIS</a>
-    <nav class="topbar__nav" aria-label="Navigation">
-      <a class="topbar__link" href="#studio">Studio</a>
-      <a class="topbar__link" href="#prestations">Prestations</a>
-      <a class="topbar__link" href="#formations">Formations</a>
-      <a class="topbar__link" href="#contact">Contact</a>
-    </nav>
+
+  <!-- Topbar (apparaît au scroll) -->
+  <div class="topbar" id="topbar">
+    <div class="topbar__inner">
+      <a class="topbar__brand" href="#top">LYSIS</a>
+      <nav class="topbar__nav" aria-label="Navigation">
+        <a class="topbar__link" href="#studio">Studio</a>
+        <a class="topbar__link" href="#prestations">Prestations</a>
+        <a class="topbar__link" href="#formations">Formations</a>
+        <a class="topbar__link" href="#contact">Contact</a>
+      </nav>
+    </div>
   </div>
-  
+
   <!-- HERO -->
   <header class="hero" id="top">
     <div class="hero__bg" aria-hidden="true"></div>
@@ -39,16 +35,20 @@
         <a class="navlink" href="#formations">Formations</a>
         <a class="navlink" href="#contact">Contact</a>
       </nav>
-<a class="hero__cta" href="#manifesto">Découvrir</a>
 
-<div class="scrollhint" aria-hidden="true">
-  <span class="scrollhint__label">Scroll</span>
-  <span class="scrollhint__line"></span>
-</div>
-      
+      <a class="hero__cta" href="#manifesto">Découvrir</a>
+    </div>
+
+    <div class="scrollhint" aria-hidden="true">
+      <span class="scrollhint__label">Scroll</span>
+      <span class="scrollhint__line"></span>
+    </div>
   </header>
-<div class="divider" aria-hidden="true"></div>
+
   <main>
+
+    <!-- Divider cuivre (transition hero -> contenu) -->
+    <div class="divider" aria-hidden="true"></div>
 
     <!-- MANIFESTE -->
     <section class="section section--manifesto" id="manifesto">
@@ -58,6 +58,7 @@
           <span>Un mix précis.</span>
           <span>Une méthode.</span>
         </h2>
+
         <p class="lead">
           Lysis accompagne les projets artistiques et audiovisuels jusqu’à leur réalisation,
           avec exigence, écoute et transmission.
@@ -93,7 +94,9 @@
         </div>
       </div>
     </section>
-<div class="divider" aria-hidden="true"></div>
+
+    <div class="divider divider--thin" aria-hidden="true"></div>
+
     <!-- PRESTATIONS -->
     <section class="section section--cards" id="prestations">
       <div class="container">
@@ -117,7 +120,9 @@
         </div>
       </div>
     </section>
-<div class="divider" aria-hidden="true"></div>
+
+    <div class="divider divider--thin" aria-hidden="true"></div>
+
     <!-- FORMATIONS -->
     <section class="section section--train" id="formations">
       <div class="container">
@@ -128,10 +133,12 @@
             <div class="train__name">Initiation MAO</div>
             <div class="train__meta">2 jours</div>
           </div>
+
           <div class="train__row">
             <div class="train__name">Perfectionnement</div>
             <div class="train__meta">10 jours (continu ou fractionné)</div>
           </div>
+
           <div class="train__row">
             <div class="train__name">Pro-Audio</div>
             <div class="train__meta">Sur mesure</div>
@@ -156,6 +163,14 @@
     </section>
 
   </main>
+
+  <script>
+    const onScroll = () => {
+      document.body.classList.toggle('scrolled', window.scrollY > 40);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  </script>
 
 </body>
 </html>
