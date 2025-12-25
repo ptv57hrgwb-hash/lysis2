@@ -463,3 +463,41 @@ body.scrolled .topbar__inner{
   .topbar__nav{ gap: 10px; }
   .topbar__link{ font-size: 12px; }
 }
+/* =========================
+   Scroll reveal (assemblage)
+   ========================= */
+
+.reveal{
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(2px);
+  transition:
+    opacity .7s ease,
+    transform .7s cubic-bezier(.2,.8,.2,1),
+    filter .7s ease;
+  will-change: opacity, transform, filter;
+}
+
+.reveal.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Variantes */
+.reveal--left{ transform: translateX(-18px); }
+.reveal--right{ transform: translateX(18px); }
+.reveal--up{ transform: translateY(22px); }
+
+.reveal--delay-1{ transition-delay: .08s; }
+.reveal--delay-2{ transition-delay: .16s; }
+.reveal--delay-3{ transition-delay: .24s; }
+
+/* Respect accessibilité */
+@media (prefers-reduced-motion: reduce){
+  .reveal, .reveal.is-visible{
+    transition: none !important;
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+}
